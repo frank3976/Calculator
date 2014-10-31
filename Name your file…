@@ -1,0 +1,724 @@
+package com.fn.ocja;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import java.awt.Toolkit;
+import javax.swing.UIManager; 
+
+public class Calculator extends JFrame implements ActionListener {
+	private static final long serialVersionUID = 1L;
+	private JPanel panel;
+	double sum, sum2;
+	double num;
+	static double result;
+	String str = Double.toString(result);
+	static double d1, d2;    
+	int k = 1, x = 0, y = 0, z = 0;
+	char ch;  
+	JButton btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, zero, clr, pow2, pow3, exp, 
+	fac, plus, min, div, log, rec, mult, equals, plusMin, decimal, mr, mc, mp,                       
+	mm, sqrt, sin, cos, tan;       
+	Container cont;        
+	static JPanel btnpanel;        
+	private static JTextField display;
+	public Calculator() {
+		setForeground(new Color(255, 255, 0));
+		setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 18));
+		setTitle("Calculator with a Twist ! ! !\r\n");
+		setResizable(false);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Calculator.class.getResource("/Images/imagesCA0L8KZ4.png")));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 601, 809);
+		panel = new JPanel();
+		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		panel.setLayout(null);
+		setContentPane(panel);
+		//setIconImage(Toolkit.getDefaultToolkit().getImage(ScientificCalculator.class.getResource("/Images/untitled2.png")));
+		setAlwaysOnTop(true);
+		getContentPane().setBackground(new Color(128, 128, 128));
+		setBackground(new Color(124, 252, 0));
+		cont = getContentPane(); 
+		cont.setLayout(new BorderLayout());
+		btnpanel = new JPanel();
+		btnpanel.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(0, 0, 255), null, null, new Color(153, 255, 153)));
+		mc = new JButton("MC");
+		mc.setToolTipText("");
+		mc.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 30));
+		mc.setBounds(34, 118, 101, 58);
+		mc.setForeground(Color.WHITE);
+		mc.setBackground(new Color(255, 255, 255, 0));
+		mc.setOpaque(false);  
+		mc.setBorder(null);  
+		mc.addActionListener((ActionListener) this); 
+		mr = new JButton("MR");
+		mr.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 30));
+		mr.setBounds(168, 118, 101, 58);
+		mr.setForeground(Color.WHITE);
+		mr.setBackground(new Color(255, 255, 255, 0));
+		mr.setOpaque(false);  
+		mr.setBorder(null);  
+		mp = new JButton("M+");
+		mp.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 30));
+		mp.setBounds(311, 115, 101, 58);
+		mp.setForeground(Color.WHITE);
+		mp.setBackground(new Color(255, 255, 255, 0));
+		mp.setOpaque(false);  
+		mp.setBorder(null);  
+		mp.addActionListener((ActionListener) this); 
+		mm = new JButton("M-");
+		mm.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 30));
+		mm.setBounds(459, 115, 101, 58);
+		mm.setForeground(Color.WHITE);
+		mm.setBackground(new Color(255, 255, 255, 0));
+		mm.setOpaque(false);  
+		mm.setBorder(null);  
+		mm.addActionListener(this);  
+		btn2 = new JButton("2");
+		btn2.setToolTipText("TWO");
+		btn2.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 40));
+		btn2.setBounds(168, 370, 101, 58);
+		btn2.setForeground(Color.WHITE);
+		btn2.setBackground(new Color(255, 255, 255, 0));
+		btn2.setOpaque(false);  
+		btn2.setBorder(null);  
+		btn2.addActionListener(this);
+		btn1 = new JButton("1");
+		btn1.setToolTipText("ONE");
+		btn1.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 40));
+		btn1.setBounds(34, 370, 101, 58);
+		btn1.setForeground(Color.WHITE);
+		btn1.setBackground(new Color(255, 255, 255, 0));
+		btn1.setOpaque(false);  
+		btn1.setBorder(null);  
+		btn1.addActionListener(this); 
+		btn3 = new JButton("3");
+		btn3.setToolTipText("THREE");
+		btn3.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 40));
+		btn3.setBounds(311, 370, 101, 58);
+		btn3.setForeground(Color.WHITE);
+		btn3.setBackground(new Color(255, 255, 255, 0));
+		btn3.setOpaque(false);  
+		btn3.setBorder(null);  
+		btn3.addActionListener(this); 
+		btn4 = new JButton("4");
+		btn4.setToolTipText("FOUR");
+		btn4.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 40));
+		btn4.setBounds(34, 287, 101, 58);
+		btn4.setForeground(Color.WHITE);
+		btn4.setBackground(new Color(255, 255, 255, 0));
+		btn4.setOpaque(false);  
+		btn4.setBorder(null);  
+		btn4.addActionListener(this);
+		btn5 = new JButton("5");
+		btn5.setToolTipText("FIVE");
+		btn5.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 40));
+		btn5.setBounds(168, 288, 101, 58);
+		btn5.setForeground(Color.WHITE);
+		btn5.setBackground(new Color(255, 255, 255, 0));
+		btn5.setOpaque(false);  
+		btn5.setBorder(null);  
+		btn5.addActionListener(this);   
+		btn7 = new JButton("7");
+		btn7.setToolTipText("SEVEN");
+		btn7.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 40));
+		btn7.setBounds(34, 198, 101, 58);
+		btn7.setForeground(Color.WHITE);
+		btn7.setBackground(new Color(255, 255, 255, 0));
+		btn7.setOpaque(false);  
+		btn7.setBorder(null);  
+		btn7.addActionListener(this);   
+		btn6 = new JButton("6");
+		btn6.setToolTipText("SIX");
+		btn6.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 40));
+		btn6.setBounds(311, 288, 101, 58);
+		btn6.setForeground(Color.WHITE);
+		btn6.setBackground(new Color(255, 255, 255, 0));
+		btn6.setOpaque(false);  
+		btn6.setBorder(null);  
+		btn6.addActionListener(this);   
+		btn8 = new JButton("8");
+		btn8.setToolTipText("EIGHT");
+		btn8.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 40));
+		btn8.setBounds(168, 198, 101, 58);
+		btn8.setForeground(Color.WHITE);
+		btn8.setBackground(new Color(255, 255, 255, 0));
+		btn8.setOpaque(false);  
+		btn8.setBorder(null);  
+		btn8.addActionListener(this);   
+		btn9 = new JButton("9");
+		btn9.setToolTipText("NINE");
+		btn9.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 40));
+		btn9.setBounds(311, 198, 101, 58);
+		btn9.setForeground(Color.WHITE);
+		btn9.setBackground(new Color(255, 255, 255, 0));
+		btn9.setOpaque(false);  
+		btn9.setBorder(null);  
+		btn9.addActionListener(this);   
+		zero = new JButton("0");
+		zero.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 40));
+		zero.setBounds(168, 448, 101, 58);
+		zero.setForeground(Color.WHITE);
+		zero.setBackground(new Color(255, 255, 255, 0));
+		zero.setOpaque(false);  
+		zero.setBorder(null);  
+		zero.addActionListener(this); 
+		plus = new JButton("+");
+		plus.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 40));
+		plus.setBounds(459, 448, 101, 58);
+		plus.setForeground(Color.WHITE);
+		plus.setBackground(new Color(255, 255, 255, 0));
+		plus.setOpaque(false);  
+		plus.setBorder(null);  
+		plus.addActionListener(this);   
+		min = new JButton("-");
+		min.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 46));
+		min.setBounds(459, 288, 101, 58);
+		min.setForeground(Color.WHITE);
+		min.setBackground(new Color(255, 255, 255, 0));
+		min.setOpaque(false);  
+		min.setBorder(null);  
+		min.addActionListener(this);           
+		mult = new JButton("*");
+		mult.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 40));
+		mult.setBounds(459, 370, 101, 58);
+		mult.setForeground(Color.WHITE);
+		mult.setBackground(new Color(255, 255, 255, 0));
+		mult.setOpaque(false);  
+		mult.setBorder(null);  
+		mult.addActionListener(this);      
+		div = new JButton("/");
+		div.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 40));
+		div.setBounds(311, 448, 101, 58);
+		div.setForeground(Color.WHITE);
+		div.setBackground(new Color(255, 255, 255, 0));
+		div.setOpaque(false);  
+		div.setBorder(null);  
+		div.addActionListener(this);
+		plusMin = new JButton("+/-");
+		plusMin.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 40));
+		plusMin.setBounds(458, 198, 101, 58);
+		plusMin.setForeground(Color.WHITE);
+		plusMin.setBackground(new Color(255, 255, 255, 0));
+		plusMin.setOpaque(false);  
+		plusMin.setBorder(null);  
+		plusMin.addActionListener(this);     
+		decimal = new JButton(".");
+		decimal.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 40));
+		decimal.setBounds(34, 448, 101, 58);
+		decimal.setForeground(Color.WHITE);
+		decimal.setBackground(new Color(255, 255, 255, 0));
+		decimal.setOpaque(false);  
+		decimal.setBorder(null);  
+		decimal.addActionListener(this);        
+		equals = new JButton("=");
+		equals.setToolTipText("EQUALS");
+		equals.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 40));
+		equals.setBounds(459, 529, 101, 58);
+		equals.setForeground(Color.WHITE);
+		equals.setBackground(new Color(255, 255, 255, 0));
+		equals.setOpaque(false);  
+		equals.setBorder(null); 
+		equals.addActionListener(this);       
+		rec = new JButton("1/x");
+		rec.setToolTipText("TIMES ONE");
+		rec.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 30));
+		rec.setBounds(168, 529, 101, 58);
+		rec.setForeground(Color.WHITE);
+		rec.setBackground(new Color(255, 255, 255, 0));
+		rec.setOpaque(false);  
+		rec.setBorder(null);  
+		rec.addActionListener(this);      
+		sqrt = new JButton("Sqrt");
+		sqrt.setToolTipText("SQUARE ROOT");
+		sqrt.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 25));
+		sqrt.setBounds(34, 529, 101, 58);
+		sqrt.setForeground(Color.WHITE);
+		sqrt.setBackground(new Color(255, 255, 255, 0));
+		sqrt.setOpaque(false);  
+		sqrt.setBorder(null);  
+		sqrt.addActionListener(this);     
+		log = new JButton("LOG");
+		log.setToolTipText("LOG\r\n");
+		log.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 26));
+		log.setBounds(311, 531, 101, 58);
+		log.setForeground(Color.WHITE);
+		log.setBackground(new Color(255, 255, 255, 0));
+		log.setOpaque(false);  
+		log.setBorder(null);  
+		log.addActionListener(this);      
+		sin = new JButton("SIN");
+		sin.setToolTipText("SIN");
+		sin.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 26));
+		sin.setBounds(34, 607, 101, 58);
+		sin.setForeground(Color.WHITE);
+		sin.setBackground(new Color(255, 255, 255, 0));
+		sin.setOpaque(false);  
+		sin.setBorder(null);  
+		sin.addActionListener(this);      
+		cos = new JButton("COS");
+		cos.setToolTipText("COS");
+		cos.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 26));
+		cos.setBounds(168, 607, 101, 58);
+		cos.setForeground(Color.WHITE);
+		cos.setBackground(new Color(255, 255, 255, 0));
+		cos.setOpaque(false);  
+		cos.setBorder(null);  
+		cos.addActionListener(this);      
+		tan = new JButton("TAN");
+		tan.setToolTipText("TANGENS");
+		tan.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 26));
+		tan.setBounds(311, 607, 101, 58);
+		tan.setForeground(Color.WHITE);
+		tan.setBackground(new Color(255, 255, 255, 0));
+		tan.setOpaque(false);  
+		tan.setBorder(null);  
+		tan.addActionListener(this);      
+		clr = new JButton("AC");
+		clr.setToolTipText("CLEAR ALL");
+		clr.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 30));
+		clr.setBounds(459, 607, 101, 58);
+		clr.setForeground(Color.WHITE);
+		clr.setBackground(new Color(255, 255, 255, 0));
+		clr.setOpaque(false);  
+		clr.setBorder(null);  
+		clr.addActionListener(this);    
+		pow2 = new JButton("x^2");
+		pow2.setToolTipText("SQUARED");
+		pow2.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 26));
+		pow2.setBounds(34, 685, 101, 58);
+		pow2.setForeground(Color.WHITE);
+		pow2.setBackground(new Color(255, 255, 255, 0));
+		pow2.setOpaque(false);  
+		pow2.setBorder(null);  
+		pow2.addActionListener(this);      
+		pow3 = new JButton("x^3");
+		pow3.setToolTipText("N THIRD");
+		pow3.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 26));
+		pow3.setBounds(168, 685, 101, 58);
+		pow3.setForeground(Color.WHITE);
+		pow3.setBackground(new Color(255, 255, 255, 0));
+		pow3.setOpaque(false);  
+		pow3.setBorder(null);  
+		pow3.addActionListener(this);       
+		exp = new JButton("Exp");
+		exp.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 26));
+		exp.setBounds(311, 686, 101, 58);
+		exp.setForeground(Color.WHITE);
+		exp.setBackground(new Color(255, 255, 255, 0));
+		exp.setOpaque(false);  
+		exp.setBorder(null);  
+		exp.addActionListener(this);
+		fac = new JButton("n!");
+		fac.setFont(new Font("Rockwell Extra Bold", Font.BOLD | Font.ITALIC, 30));
+		fac.setBounds(459, 685, 101, 58);
+		fac.setForeground(Color.WHITE);
+		fac.setBackground(new Color(255, 255, 255, 0));
+		fac.setOpaque(false);  
+		fac.setBorder(null);  
+		fac.addActionListener(this);
+		cont.add("Center", btnpanel);
+		btnpanel.setLayout(null);
+		btnpanel.add(mc);
+		btnpanel.add(mr);
+		btnpanel.add(mp);
+		btnpanel.add(mm);
+		btnpanel.add(btn2);
+		btnpanel.add(btn1);
+		btnpanel.add(btn3);
+		btnpanel.add(btn4);
+		btnpanel.add(btn5);
+		btnpanel.add(btn7);
+		btnpanel.add(btn6);
+		btnpanel.add(btn8);
+		btnpanel.add(btn9);
+		btnpanel.add(zero);
+		btnpanel.add(plus);
+		btnpanel.add(min);
+		btnpanel.add(mult);
+		btnpanel.add(div);
+		btnpanel.add(plusMin);
+		btnpanel.add(decimal);
+		btnpanel.add(equals);
+		btnpanel.add(rec);
+		btnpanel.add(sqrt);
+		btnpanel.add(log);
+		btnpanel.add(sin);
+		btnpanel.add(cos);
+		btnpanel.add(tan);
+		btnpanel.add(clr);
+		btnpanel.add(pow2);
+		btnpanel.add(pow3);
+		btnpanel.add(exp);
+		btnpanel.add(fac);
+		display = new JTextField();
+		display.setEditable(false);
+		display.setForeground(Color.WHITE);
+		display.setBackground(new Color(255, 255, 255, 0));
+		display.setOpaque(false);  
+		display.setBorder(UIManager.getBorder("TextField.border"));  
+		display.setHorizontalAlignment(SwingConstants.RIGHT);
+		display.setFont(new Font("Rockwell Extra Bold", Font.BOLD, 33));
+		display.setBounds(34, 11, 526, 81);
+		btnpanel.add(display);
+		display.setColumns(10);
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(Calculator.class.getResource("/Images/storm.gif")));
+		label.setBounds(0, 0, 599, 767);
+		btnpanel.add(label);
+	}
+	public void actionPerformed(ActionEvent e) { 
+
+		String str = e.getActionCommand();  
+		if (str.equals("1")) {   
+			if (z == 0) {    
+				display.setText(display.getText() + "1"); 
+			} else {  
+				display.setText("");  
+				display.setText(display.getText() + "1"); 
+				z = 0;                     
+			} 
+		}     
+		if (str.equals("2")) {  
+			if (z == 0) {   
+				display.setText(display.getText() + "2"); 
+			} else {   
+				display.setText("");  
+				display.setText(display.getText() + "2");  
+				z = 0;             
+			} 
+		}  
+		if (str.equals("3")) { 
+			if (z == 0) {   
+				display.setText(display.getText() + "3"); 
+			} else { 
+
+				display.setText(""); 
+				display.setText(display.getText() + "3");   
+				z = 0;                       
+			}              
+		}              
+		if (str.equals("4")) {  
+			if (z == 0) {    
+				display.setText(display.getText() + "4"); 
+			} else { 
+				display.setText("");     
+				display.setText(display.getText() + "4"); 
+				z = 0;            
+			}           
+		}               
+		if (str.equals("5")) { 
+			if (z == 0) {    
+				display.setText(display.getText() + "5");  
+			} else {   
+				display.setText(""); 
+				display.setText(display.getText() + "5"); 
+				z = 0;                      
+			}             
+		}             
+		if (str.equals("6")) {   
+			if (z == 0) {                           
+				display.setText(display.getText() + "6");  
+			} else {       
+				display.setText("");   
+				display.setText(display.getText() + "6");  
+				z = 0;       
+			}             
+		}           
+		if (str.equals("7")) { 
+			if (z == 0) {    
+				display.setText(display.getText() + "7");  
+			} else {                        
+				display.setText("");     
+				display.setText(display.getText() + "7");  
+				z = 0;                
+			}           
+		}               
+		if (str.equals("8")) {   
+			if (z == 0) {   
+				display.setText(display.getText() + "8"); 
+			} else {           
+				display.setText("");   
+				display.setText(display.getText() + "8");  
+				z = 0;         
+			}           
+		}             
+		if (str.equals("9")) { 
+			if (z == 0) {   
+				display.setText(display.getText() + "9");
+			} else {    
+				display.setText("");  
+				display.setText(display.getText() + "9"); 
+				z = 0;             
+			}         
+		}         
+		if (str.equals("0")) { 
+			if (z == 0) {   
+				display.setText(display.getText() + "0");  
+			} else {  
+				display.setText(""); 
+				display.setText(display.getText() + "0"); 
+				z = 0;   
+			}     
+		}       
+		if (str.equals("AC")) {   
+			display.setText(""); 
+			x = 0;           
+			y = 0;       
+			z = 0;      
+		}           
+		if (str.equals("log")) {  
+			if (display.getText().equals("")) { 
+				display.setText("");     
+			} else {      
+				num = Math.log(Double.parseDouble(display.getText())); 
+				display.setText("log ");   
+				display.setText(display.getText() + num);
+			}
+		}
+		if (str.equals("1/x")) {   
+			if (display.getText().equals("")) { 
+				display.setText("");     
+			} else {       
+				num = 1 / Double.parseDouble(display.getText()); 
+				display.setText("");  
+				display.setText(display.getText() + num);
+			}     
+		}  
+		if (str.equals("Exp")) { 
+			if (display.getText().equals("")) {  
+				display.setText("");  
+			} else {            
+				num = Math.exp(Double.parseDouble(display.getText())); 
+				display.setText("Exp = ");   
+				display.setText(display.getText() + num);  
+			}        
+		} 
+		if (str.equals("x^2")) {  
+			if (display.getText().equals("")) {  
+				display.setText("");      
+			} else {         
+				num = Math.pow(Double.parseDouble(display.getText()), 2); 
+				display.setText("X^2 = ");  
+				display.setText(display.getText() + num);   
+			}           
+		} 
+		if (str.equals("x^3")) {  
+			if (display.getText().equals("")) {  
+				display.setText("");   
+			} else {        
+				num = Math.pow(Double.parseDouble(display.getText()), 3); 
+				display.setText("");    
+				display.setText(display.getText() + num); 
+			}     
+		}         
+		if (str.equals("+/-")) {  
+			if (x == 0) {    
+				display.setText("-" + display.getText());  
+				x = 1;             
+			} else {      
+				display.setText(display.getText());
+			}          
+		}            
+		if (str.equals(".")) {  
+			if (y == 0) {   
+				display.setText(display.getText() + ".");
+				y = 1;              
+			} else {    
+				display.setText(display.getText());  
+			}           
+		}             
+		if (str.equals("+")) {  
+			if (display.getText().equals("")) {   
+				display.setText("");   
+				sum = 0;    
+				ch = '+';  
+			} else {   
+				sum = Double.parseDouble(display.getText()); 
+				display.setText(""); 
+				ch = '+';    
+				y = 0;    
+				x = 0;   
+			}  
+			display.requestFocus(); 
+		}
+		if (str.equals("-")) { 
+			if (display.getText().equals("")) {   
+				display.setText("");      
+				sum = 0;       
+				ch = '-';     
+			} else {       
+				x = 0;   
+				y = 0;    
+				sum = Double.parseDouble(display.getText());
+				display.setText("");       
+				ch = '-';      
+			}       
+			display.requestFocus();    
+		}               
+		if (str.equals("/")) {  
+			if (display.getText().equals("")) {   
+				display.setText("");                  
+				sum = 1;                              
+				ch = '/';                   
+			} else {   
+				x = 0;    
+				y = 0;  
+				sum = Double.parseDouble(display.getText());  
+				ch = '/';   
+				display.setText("");    
+			}              
+			display.requestFocus(); 
+		}          
+		if (str.equals("*")) { 
+			if (display.getText().equals("")) { 
+				display.setText("");   
+				sum = 1;   
+				ch = '*';  
+			} else {     
+				x = 0;      
+				y = 0;              
+				sum = Double.parseDouble(display.getText());  
+				ch = '*';                 
+				display.setText("");
+			}                  
+			display.requestFocus();   
+		}          
+		if (str.equals("MC")) { 
+			d1 = 0;       
+			display.setText("");
+		}           
+		if (str.equals("MR")) {   
+			display.setText("");      
+			display.setText(display.getText() + d1);  
+		}         
+		if (str.equals("M+")) {  
+			if (k == 1) {   
+				d1 = Double.parseDouble(display.getText()); 
+				k++; 
+			} else {  
+				d1 += Double.parseDouble(display.getText());   
+				display.setText("" + d1);  
+			}  
+		}  
+		if (str.equals("M-")) { 
+			if (k == 1) {  
+				d1 = Double.parseDouble(display.getText());  
+				k++;  
+			} else {  
+				d1 -= Double.parseDouble(display.getText()); 
+				display.setText("" + d1); 
+			}  
+		}     
+		if (str.equals("Sqrt")) {  
+			if (display.getText().equals("")) {  
+				display.setText("");  
+			} else { 
+				num = Math.sqrt(Double.parseDouble(display.getText()));  
+				display.setText("");  
+				display.setText(display.getText() + num); 
+			}         
+		}      
+		if (str.equals("SIN")) {
+			if (display.getText().equals("")) { 
+				display.setText("");        
+			} else {     
+				num = Math.sin(Double.parseDouble(display.getText())); 
+				display.setText("");      
+				display.setText(display.getText() + num);  
+			}    
+		}    
+		if (str.equals("COS")) {
+			if (display.getText().equals("")) {
+				display.setText("");  
+			} else {  
+				num = Math.cos(Double.parseDouble(display.getText()));  
+				display.setText(""); 
+				display.setText(display.getText() + num);  
+			}   
+		} 
+		if (str.equals("TAN")) {  
+			if (display.getText().equals("")) { 
+				display.setText("");    
+			} else {   
+				num = Math.tan(Double.parseDouble(display.getText())); 
+				display.setText("");  
+				display.setText(display.getText() + num); 
+			}    
+		}       
+		if (str.equals("=")) { 
+			if (display.getText().equals("")) {   
+				display.setText("");       
+			} else {           
+				sum2 = Double.parseDouble(display.getText()); 
+				switch (ch) {                     
+				case '+':
+					result = sum + sum2;break; 
+				case '-':    
+					result = sum - sum2;   break;   
+				case '/':     
+					result = sum / sum2;   break; 
+				case '*':  
+					result = sum * sum2;  break;   
+				} 
+				display.setText( ""); 
+				if(result == (long) result)
+					display.setText(display.getText() +(long) result); 
+				else
+					display.setText(display.getText() + result); 
+				z = 1; 
+			}
+		}
+		if (str.equals("n!")) { 
+			if (display.getText().equals("")) {  
+				display.setText("");  
+			} else {    
+				num = fact(Double.parseDouble(display.getText()));
+				display.setText("");
+				display.setText(display.getText() + num); 
+			}   
+		} 
+		display.requestFocus();
+	}
+	double fact(double x) {
+		if (x < 0) {     
+			return 0; 
+		}     
+		double i, s = 1; 
+		for (i = x; i >= 1; i--) 
+			s *= i;          
+		return s;       
+	}
+	public static void main(String[] args)throws Exception  {
+
+
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Calculator frame = new Calculator();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.getLocalizedMessage();
+				}
+			}
+		});
+	}
+}
+
+
+
+
